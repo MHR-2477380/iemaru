@@ -1,0 +1,2 @@
+// コメントを削除する時は一覧表示の部分だけをレンダーさせるようにする
+$('#comment-<%= @article.id %>').html("<%= j(render 'articles/comment', { article: @article, post_comment: @post_comment }) %>");

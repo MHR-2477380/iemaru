@@ -1,0 +1,6 @@
+// コメント一覧表示
+$('#comment-<%= @article.id %>').html("<%= j(render 'articles/comment', { article: @article, post_comment: @post_comment }) %>");
+
+
+// コメント新規投稿フォーム（必ず空のコメントフォームを渡してあげること)
+$('#comment_form-<%= @article.id %>').html("<%= j(render 'articles/comment_form', { article: @article, post_comment: @new_post_comment }) %>");

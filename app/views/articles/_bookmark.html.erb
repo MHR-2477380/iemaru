@@ -1,0 +1,15 @@
+<% if article.bookmark_by?(current_user) %>
+
+	<%= link_to article_bookmarks_path(article.id), method: :delete, remote: true do %>
+  		<span class="reactionall">
+		&nbsp;<i class= "glyphicon glyphicon-bookmark" aria-hidden="true" ></i>&nbsp;ブックマークを解除&nbsp;
+	<% end %>
+
+<% else %>
+
+	<%= link_to article_bookmarks_path(article.id), method: :post, remote: true do %>
+  		<span class="reactionall">
+		&nbsp;<i class= "glyphicon glyphicon-bookmark" aria-hidden="true" ></i>&nbsp;ブックマーク&nbsp;
+	<% end %>
+
+<% end %>

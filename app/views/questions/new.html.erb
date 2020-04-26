@@ -1,0 +1,61 @@
+<body id="back">
+
+	<p class="notice text-center"><%= notice %></p>
+
+	<div class="panel panel-default">
+
+		<div class="panel-heading text-center">質問を投稿する</div>
+
+		<div class="panel-body">
+
+			<!-- 質問新規投稿フォーム -->
+
+			<%= form_with(model: @question, url: questions_path, local: true) do |f| %>
+
+				<div class="select">
+					<span class="col-xs-6">カテゴリー</span>
+					<span class="col-xs-6 text-left">
+						<%= f.collection_select(:category_id, Category.all, :id, :name, include_blank: "選択して下さい")%>
+					</span>
+				</div>
+
+				<div class="select">
+					<span class="col-xs-6">質問ステータス</span>
+					<span class="col-xs-6 text-left">
+						<%= f.select(:status, [["回答受付中", true],["回答済み", false]]) %>
+					</span>
+				</div>
+
+				<div class="title col-xs-12">
+					<div>タイトル</div>
+					<div class="text-left"><%= f.text_field(:title, placeholder:"４０文字以内") %></div>
+				</div>
+
+				<div class="content col-xs-12 text-center">
+					<div>内容</div>
+					<div><%= f.text_area(:content) %></div>
+				</div>
+
+
+				<div class="col-xs-12 text-center">
+					<%= f.submit("質問を投稿する", class: "btn btn-default") %>
+				</div>
+
+			<% end %>
+
+			<!-- ここまで -->
+
+		</div>
+
+	</div>
+
+	<!-- リンク -->
+	<div class="question_show_link">
+		<%= link_to "一覧画面へ戻る", questions_path, class: 'col-xs-12 btn btn-default' %>
+	</div>
+
+</body>
+
+
+
+

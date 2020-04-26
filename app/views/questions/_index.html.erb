@@ -1,0 +1,84 @@
+<div class="panel panel-default">
+	<div class="panel-heading text-center">回答受付中の質問</div>
+
+	<div class="panel-body">
+
+		<!-- 回答受付中の質問一覧 -->
+
+		<% active_questions.each do |active| %>
+
+			<span class="row">
+
+				<span class="col-xs-1"></span>
+
+				<span class="col-xs-7">
+					<%= link_to active.title, question_path(active) %>
+				</span>
+
+				<span class="col-xs-3  text-right">
+					<% if active.status == true %>
+						<div class="statusbutton"> 回答受付中 </div>
+					<% end %>
+				</span>
+
+				<span class="col-xs-1"></span>
+
+			</span>
+
+		<% end %>
+
+		<!-- ページネーション -->
+		<div class="row">
+			<div class="col-xs-1"></div>
+			<div class="col-xs-10"><%= paginate active_questions %></div>
+			<div class="col-xs-1"></div>
+		</div>
+
+	</div>
+
+</div>
+
+<!-- 回答受付中の質問一覧ここまで -->
+
+<div class="panel panel-default">
+
+	<div class="panel-heading text-center">&nbsp;&nbsp;解決済みの質問&nbsp;&nbsp;</div>
+
+	<div class="panel-body">
+
+		<!-- 回答済みの質問一覧 -->
+
+		<% passive_questions.each do |passive| %>
+
+			<span class="row">
+
+				<span class="col-xs-1"></span>
+
+				<span class="col-xs-7">
+					<%= link_to passive.title, question_path(passive) %>
+				</span>
+
+				<span class="col-xs-3 text-right">
+					<% if passive.status == false %>
+						<div class="statusbutton"> &nbsp;&nbsp;回答済み&nbsp;&nbsp; </div>
+					<% end %>
+				</span>
+
+				<span class="col-xs-1"></span>
+
+			</span>
+
+		<% end %>
+
+		<!-- ページネーション -->
+		<div class="row">
+			<div class="col-xs-1"></div>
+			<div class="col-xs-10"><%= paginate passive_questions %></div>
+			<div class="col-xs-1"></div>
+		</div>
+
+	</div>
+
+</div>
+
+<!-- 回答済みの質問一覧ここまで -->

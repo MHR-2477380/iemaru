@@ -1,0 +1,46 @@
+<div class="panel panel-default">
+
+	<div class="panel-heading text-center">投稿した質問</div>
+
+	<div class="panel-body">
+
+		<% if questions.blank? %>
+			<div class="blank text-center">まだ質問が投稿されていません。</div>
+		<% end %>
+
+		<!-- 質問一覧 -->
+
+		<% questions.each do |question| %>
+
+			<span class="row">
+
+				<span class="my_page_question text-left col-xs-8">
+					<%= link_to question.title, question_path(question) %>
+				</span>
+
+				<span class="col-xs-4 text-right">
+
+					<% if question.status == true %>
+						<div class="statusbutton"> 回答受付中</div>
+					<% else %>
+						<div class="statusbutton">&nbsp;&nbsp;回答済み&nbsp;&nbsp;</div>
+					<% end %>
+
+				</span>
+
+			</span>
+
+		<% end %>
+
+		<!-- ここまで -->
+
+	</div>
+
+	<!-- ページネーション -->
+	<div class="row">
+		<div class="col-xs-1"></div>
+		<div class="col-xs-10"><%= paginate questions, class: "paginate" %></div>
+		<div class="col-xs-1"></div>
+	</div>
+
+</div>

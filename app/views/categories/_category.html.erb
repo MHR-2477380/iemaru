@@ -1,0 +1,25 @@
+<!-- カテゴリー検索欄 -->
+
+<div class="panel panel-default">
+
+    <div class="panel-heading text-center">
+        <div class="panel-title">
+            カテゴリー検索
+        </div>
+    </div>
+
+    <div class="panel-body">
+        <ul type="square">
+
+            <% @categories.each do |category| %>
+                <li>
+                    <%= link_to("#{category.name}", categories_path(category_id: category.id), remote: true) %>
+                </li>
+            <% end %>
+
+        </ul>
+   </div>
+
+ </div>
+
+ <!-- ここまで -->

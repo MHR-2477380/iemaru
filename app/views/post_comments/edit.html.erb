@@ -1,0 +1,52 @@
+<body id="back">
+
+	<p class="notice text-center"><%= notice %></p>
+
+	<div class="panel panel-default">
+
+		<div class="panel-heading text-center">
+			<div class="panel-title">　コメントの編集　</div>
+		</div>
+
+		<div class="panel-body">
+
+			<!-- コメント編集フォーム -->
+
+			<%= form_with(model: [@article, @post_comment], url: article_post_comment_path(@article, @post_comment), local: true, method: :PATCH ) do |f| %>
+
+				<table class="table table-hover table-inverse">
+					<tbody>
+						<tr>
+							<!-- コメント本文 -->
+							<td>
+								<%= f.text_area(:comment) %>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<!-- 画像 -->
+								<div class="image_field col-xs-5">
+									<%= f.attachment_field :post_comment_image %>
+								</div>
+
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<%= f.submit("更新する", class: "btn btn-default") %>
+
+			<% end %>
+
+			<!-- ここまで -->
+
+		</div>
+	</div>
+
+	<!-- リンク -->
+	<div class="article_show_link">
+		<%= link_to "詳細画面へ戻る", article_path(@article), class: 'col-xs-12 btn btn-default' %>
+	</div>
+	<!-- ここまで -->
+
+</body>

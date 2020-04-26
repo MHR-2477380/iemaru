@@ -1,0 +1,44 @@
+<div class="panel panel-default">
+
+	<div class="panel-heading text-center">ブックマークしたレポート</div>
+
+	<div class="panel-body">
+
+		<% if bookmarks.blank? %>
+			<div class="blank text-center">ブックマークされているレポートはありません。</div>
+		<% end %>
+
+			<!-- ブックマーク一覧表示 -->
+
+			<% bookmarks.each do |bookmark| %>
+
+				<div class="col-xs-6">
+					<div class="article panel panel-default">
+						<div class="panel-heading text-center">
+							<%= link_to bookmark.user.name + "様邸", user_path(bookmark.user) %>
+						</div>
+
+						<div class="panel-body text-center">
+							<div>
+								<%= attachment_image_tag bookmark, :article_image, :fill, 300, 200, format: 'jpeg', class: "img-responsive center-block" %>
+							</div>
+								<div class="action"><%= link_to "詳細ページへ", article_path(bookmark), class: "btn btn-default col-xs-12" %>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+			<% end %>
+
+			<!-- ここまで -->
+
+			<!-- ページネーション -->
+			<div class="row">
+				<div class="col-xs-1"></div>
+				<div class="col-xs-10"><%= paginate bookmarks, class: "paginate" %></div>
+				<div class="col-xs-1"></div>
+			</div>
+	</div>
+
+</div>

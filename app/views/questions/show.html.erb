@@ -1,0 +1,111 @@
+<body id="back">
+
+	<p class="notice text-center"><%= notice %></p>
+
+		<!-- 質問詳細 -->
+
+		<div class="panel panel-default">
+
+			<div class="panel-heading text-center">
+				<div class="panel-title">詳細</div>
+			</div>
+
+			<div class="panel-body">
+
+				<div class="row">
+
+					<div class="col-xs-1"></div>
+
+					<div class="col-xs-3">
+
+						カテゴリー
+
+						<br><br>
+
+						ステータス
+
+						<br><br>
+
+						質問者
+
+						<br><br>
+
+						タイトル
+
+						<br><br>
+
+						内容
+
+						<br><br>
+
+					</div>
+
+					<div class="col-xs-7">
+
+						<%= @question.category.name %>
+
+						<br><br>
+
+						<% if @question.status == true %>
+							回答受付中
+						<% else %>
+							回答済み
+						<% end %>
+
+						<br><br>
+
+						<%= link_to @question.user.name, user_path(@question.user) %>
+
+						<br><br>
+
+						<%= @question.title %>
+
+						<br><br>
+
+						<%= simple_format(@question.content) %>
+
+						<br><br>
+
+					</div>
+
+					<div class="col-xs-1"></div>
+
+				</div>
+
+				<div class="question-action text-right">
+
+					<!-- リアクション機能 -->
+					<span id="sympathize-<%= @question.id %>">
+						<%= render 'questions/sympathize', question: @question %>
+					</span>
+
+					<!-- 各リンク -->
+					<% if @question.user == current_user %>
+						<%= link_to "編集", edit_question_path(@question.id) %>
+						<%=link_to "削除", question_path(@question.id), method: :DELETE, "data-confirm" => "Are you sure?" %>
+					<% end %>
+
+					<!-- 日付 -->
+					<%= @question.created_at.strftime('%Y/%m/%d') %>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<!-- ここまで -->
+
+
+		<!-- 回答一覧 -->
+		<%= render 'questions/answer', question: @question, answer: @answer %>
+
+		<!-- 回答投稿フォーム -->
+		<%= render 'questions/answer_form', question: @question, answer: @answer %>
+
+		<!-- リンク -->
+		<div class="question_show_link">
+			<%= link_to "一覧画面へ戻る", questions_path, class: 'col-xs-12 btn btn-default' %>
+		</div>
+
+</body>

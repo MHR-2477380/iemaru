@@ -1,0 +1,31 @@
+<body id="back">
+
+	<div class="panel panel-default">
+
+		<div class="panel-body">
+
+			<!-- ランキング -->
+			<%= render 'questions/rank', ranks: @ranks %>
+
+			<!-- 各リンク -->
+			<div class="question_index_link">
+
+				<span class="col-xs-6">
+					<%= link_to "質問を投稿する", new_question_path, class: 'col-xs-12 btn btn-default' %>
+				</span>
+
+				<span class="col-xs-6">
+					<%= link_to "カテゴリーから質問を検索する", categories_path, class: 'col-xs-12 btn btn-default' %>
+				</span>
+
+			</div>
+
+			<!-- 一覧表示 -->
+			<%= render 'questions/index', active_questions: @active_questions, passive_questions: @passive_questions, questions: @questions  %>
+
+		</div>
+
+	</div>
+
+</body>
+

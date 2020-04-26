@@ -1,0 +1,40 @@
+<div class="panel panel-default">
+
+	<div class="panel-heading text-center">
+
+		<div class="panel-title">回答を投稿する</div>
+	</div>
+
+	<div class="panel-body">
+
+		<!-- 質問ステータスが「回答受付中」であれば回答フォームを表示させる -->
+
+		<% if @question.status == true %>
+
+			<%= form_with(model:[question, answer], url: question_answers_path(question.id), method: :POST, local: true) do |f| %>
+
+				<table class="table table-hover table-inverse">
+					<tbody>
+						<tr>
+							<td><%= f.text_area(:content)%></td>
+						</tr>
+					</tbody>
+				</table>
+
+				<%= f.submit("回答を投稿する", class: "btn btn-default") %>
+
+			<% end %>
+
+		<% else %>
+
+		<!-- 質問ステータスが「回答済み」であれば回答フォームを表示させない -->
+
+			<div class="text-center">
+				<span style="color: red;">この質問についての回答は締め切りました。</span>
+			</div>
+
+		<% end %>
+
+      </div>
+
+  </div>

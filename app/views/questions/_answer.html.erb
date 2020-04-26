@@ -1,0 +1,120 @@
+<div class="panel panel-default">
+
+	<div class="panel-heading text-center">
+		<div class="panel-title">回答</div>
+	</div>
+
+	<div class="panel-body">
+
+		<% if question.answers.blank? %>
+			<div class="blank text-center">まだ回答がありません。</div>
+		<% end %>
+
+		<!-- アンサー一覧表示 -->
+
+		<% question.answers.each do |answer| %>
+
+			<div class="panel">
+				<div class="panel-body">
+					<div class="row">
+
+						<div class="col-xs-3">
+							<%= link_to user_path(answer.user) do %>
+								<%= attachment_image_tag answer.user, :profile_image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg", size: '50x50', class: "img-responsive center-block" %><br>
+								<p class= "text-center"><%=  answer.user.name %></p>
+							<% end %>
+						</div>
+
+						<div class="col-xs-9"><%= simple_format(answer.content, size: "400x100") %></div>
+
+					</div>
+
+					<div class="answer_action text-right">
+
+						<!-- ベストアンサーボタン -->
+
+						<% if @question.user == current_user %>
+
+							<!-- 投稿されている全ての回答に対して「この回答をベストアンサーにする！」を表示させる -->
+
+							<% if @question.best_answer_id == nil %>
+
+								<%= button_to "この回答をベストアンサーにする！",
+									{controller: 'questions', action: 'update'},
+									{method: :put, params: {question:
+									{id: @question.id,
+									title: @question.title,
+									content: @question.content,
+									status: @question.status,
+									category_id: @question.category_id,
+									user_id: @question.user_id,
+									best_answer_id: answer.id}},
+									class: "bestanswer"} %>
+
+							<% end %>
+
+						<% end %>
+
+						<!-- ベストアンサーボタンここまで -->
+
+						<!-- ベストアンサーの解除ボタン（質問投稿者に対してのみ表示） -->
+
+						<% if @question.best_answer_id == answer.id %>
+
+							<% if @question.user == current_user %>
+
+								<%= button_to "このベストアンサーを解除する",
+									{controller: 'questions', action: 'update'},
+									{method: :put, params: {question:
+									{title: @question.title,
+									content: @question.content,
+									status: @question.status,
+									category_id: @question.category_id,
+									user_id: @question.user_id,
+									best_answer_id: nil}},
+									class: "bestanswer"} %>
+
+							<% else %>
+
+								<!-- 質問投稿者以外には「この回答がベストアンサーに選ばれました！」を表示する -->
+
+								<span class="reactionall">
+									<i class= "glyphicon glyphicon-star"></i>
+									<span>この回答がベストアンサーに選ばれました！</span>
+								</span>
+
+							<% end %>
+
+						<% end %>
+
+						<!-- 各リンク -->
+
+						<% if answer.user == current_user %>
+							<%= link_to "編集", edit_question_answer_path(question,answer),　local: true %>
+						<% end %>
+
+						<% if answer.user == current_user %>
+
+							<!-- ベストアンサーに選ばれた回答は削除ボタンを表示させない -->
+							<% if @question.best_answer_id != answer.id %>
+								<%= link_to "削除", question_answer_path(question,answer), method: :delete , local: true, "data-confirm" => "Are you sure?" %>
+							<% end %>
+
+						<% end %>
+
+						<!-- 各リンクここまで -->
+
+						<!-- 日付 -->
+						<%= answer.created_at.strftime('%Y/%m/%d') %>
+
+					</div>
+
+				</div>
+			</div>
+
+		<% end %>
+
+		<!-- アンサー一覧表示ここまで -->
+
+	</div>
+</div>
