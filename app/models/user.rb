@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -13,9 +14,9 @@ class User < ApplicationRecord
 
   # ブックマーク機能のアソシエーション
   has_many :bookmarks, dependent: :destroy
+
   # ユーザーがブックマークした投稿を直接アソシエーションで取得できるように"bookmark_articles"を定義
   has_many :bookmark_articles, through: :bookmarks, source: :article
-
 
   validates :name, presence: true, length: { maximum: 10 }
 
