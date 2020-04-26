@@ -1,5 +1,4 @@
 <div class="panel panel-default">
-
 	<div class="panel-heading text-center">みんながよく見ている購入レポート</div>
 
 	<div class="panel-body">
@@ -13,17 +12,13 @@
 					<div class="panel-heading text-center">第 <%= i %> 位</div>
 
 					<div class="panel-body text-center">
-
 						<div>
 							<%= attachment_image_tag rank, :article_image, :fill, 300, 200, format: 'jpeg', class: "img-responsive center-block" %>
 						</div>
-
 						<div class="action">
 							<%= link_to "詳しくはこちら", article_path(rank), class: "btn btn-default col-xs-12" %>
 						</div>
-
 					</div>
-
 				</div>
 			</div>
 
@@ -32,5 +27,4 @@
 		<!-- ここまで -->
 
 	</div>
-
 </div>

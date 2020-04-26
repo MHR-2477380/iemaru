@@ -1,7 +1,6 @@
 <body id="back">
 
 	<div class="panel panel-default">
-
 		<div class="panel-body">
 
 			<!-- ランキング -->
@@ -20,19 +19,17 @@
 			<!-- レポート一覧 -->
 
 			<div class="panel panel-default">
-
 				<div class="panel-heading text-center">投稿された購入レポート</div>
-
 				<div class="panel-body">
 
 					<% @articles.each do |article| %>
 
 						<div class="col-xs-6">
 							<div class="article panel panel-default">
+
 								<div class="panel-heading text-center">
 									<%= link_to article.user.name + "様邸", user_path(article.user) %>
 								</div>
-
 								<div class="panel-body text-center">
 
 									<!-- 画像 -->
@@ -59,13 +56,10 @@
 					</div>
 
 				</div>
-
 			</div>
 
 			<!-- レポート一覧ここまで -->
 
 		</div>
-
 	</div>
-
 </body>
