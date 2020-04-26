@@ -1,32 +1,30 @@
 <body id="back">
 
-<p class="notice text-center"><%= notice %></p>
+    <p class="notice text-center"><%= notice %></p>
 
-	<div class="panel panel-default">
+    <div class="panel panel-default">
 
-		<div class="panel-heading text-center">
-			<div class="panel-title">　回答の編集　</div>
-		</div>
+        <div class="panel-heading text-center">
+            <div class="panel-title">　回答の編集　</div>
+        </div>
 
-		<div class="panel-body">
+        <div class="panel-body">
 
-			<%= form_with(model: [@question, @answer], url: question_answer_path(@question, @answer), local: true, method: :PATCH ) do |f| %>
+            <%= form_with(model: [@question, @answer], url: question_answer_path(@question, @answer), local: true, method: :PATCH ) do |f| %>
 
-				<table class="table table-hover table-inverse">
-					<tbody>
-						<tr>
-							<td><%= f.text_area(:content) %></td>
-						</tr>
-					</tbody>
-				</table>
+                <table class="table table-hover table-inverse">
+                    <tbody>
+                        <tr>
+                            <td><%= f.text_area(:content) %></td>
+                        </tr>
+                    </tbody>
+                </table>
 
-				<%= f.submit("更新する", class: "btn btn-default") %>
-
+                <%= f.submit("更新する", class: "btn btn-default") %>
 			<% end %>
 
-		</div>
-
-	</div>
+        </div>
+    </div>
 
 	<!-- リンク -->
 	<div class="question_show_link">
