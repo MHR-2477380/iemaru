@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-    root to: 'home#top'
+    root to: 'homes#top'
     get 'home/about' => 'homes#about'
 
     get 'bookmarks/create'
@@ -28,6 +28,5 @@ Rails.application.routes.draw do
     end
 
     get 'search' => 'searches#search'
-
 
 end
