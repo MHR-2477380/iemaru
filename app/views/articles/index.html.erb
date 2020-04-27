@@ -1,71 +1,59 @@
 <body id="back">
+    <div class="panel panel-default">
+        <div class="panel-body">
 
-	<div class="panel panel-default">
+            <!-- ランキング -->
+            <%= render 'articles/rank', ranks: @ranks %>
 
-		<div class="panel-body">
+            <!-- 各リンク -->
+            <div class="row article_index_link">
+                <span class="col-xs-6">
+                    <%= link_to "購入レポートを投稿する", new_article_path, class: 'col-xs-12 btn btn-default' %>
+                </span>
+                <span class="col-xs-6">
+                    <%= link_to "キーワードから購入レポートを検索する", search_path, class: 'col-xs-12 btn btn-default' %>
+                </span>
+            </div>
 
-			<!-- ランキング -->
-			<%= render 'articles/rank', ranks: @ranks %>
+            <!-- レポート一覧 -->
+            <div class="panel panel-default">
+                <div class="panel-heading text-center">投稿された購入レポート</div>
+                <div class="panel-body">
 
-			<!-- 各リンク -->
-			<div class="row article_index_link">
-				<span class="col-xs-6">
-					<%= link_to "購入レポートを投稿する", new_article_path, class: 'col-xs-12 btn btn-default' %>
-				</span>
-				<span class="col-xs-6">
-					<%= link_to "キーワードから購入レポートを検索する", search_path, class: 'col-xs-12 btn btn-default' %>
-				</span>
-			</div>
+                    <% @articles.each do |article| %>
 
-			<!-- レポート一覧 -->
+                        <div class="col-xs-6">
+                            <div class="article panel panel-default">
+                                <div class="panel-heading text-center">
+                                    <%= link_to article.user.name + "様邸", user_path(article.user) %>
+                                </div>
+                                <div class="panel-body text-center">
 
-			<div class="panel panel-default">
+                                    <!-- 画像 -->
+                                    <div>
+                                        <%= attachment_image_tag article, :article_image, :fill, 300, 200, format: 'jpeg', class: "img-responsive center-block" %>
+                                    </div>
 
-				<div class="panel-heading text-center">投稿された購入レポート</div>
+                                    <!-- 詳細画面へのリンク -->
+                                    <div class="action">
+                                        <%= link_to "詳しくはこちら", article_path(article), class: "btn btn-default col-xs-12" %>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-				<div class="panel-body">
+                    <% end %>
 
-					<% @articles.each do |article| %>
+                    <!-- ページネーション -->
+                    <div class="row">
+                        <div class="col-xs-1"></div>
+                        <div class="col-xs-10"><%= paginate @articles %></div>
+                        <div class="col-xs-1"></div>
+                    </div>
 
-						<div class="col-xs-6">
-							<div class="article panel panel-default">
-								<div class="panel-heading text-center">
-									<%= link_to article.user.name + "様邸", user_path(article.user) %>
-								</div>
-
-								<div class="panel-body text-center">
-
-									<!-- 画像 -->
-									<div>
-										<%= attachment_image_tag article, :article_image, :fill, 300, 200, format: 'jpeg', class: "img-responsive center-block" %>
-									</div>
-
-									<!-- 詳細画面へのリンク -->
-									<div class="action">
-										<%= link_to "詳しくはこちら", article_path(article), class: "btn btn-default col-xs-12" %>
-									</div>
-
-								</div>
-							</div>
-						</div>
-
-					<% end %>
-
-					<!-- ページネーション -->
-					<div class="row">
-						<div class="col-xs-1"></div>
-						<div class="col-xs-10"><%= paginate @articles %></div>
-						<div class="col-xs-1"></div>
-					</div>
-
-				</div>
-
-			</div>
-
-			<!-- レポート一覧ここまで -->
-
-		</div>
-
-	</div>
-
+                </div>
+            </div>
+            <!-- レポート一覧ここまで -->
+        </div>
+    </div>
 </body>

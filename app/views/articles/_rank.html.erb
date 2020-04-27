@@ -1,36 +1,26 @@
 <div class="panel panel-default">
+    <div class="panel-heading text-center">みんながよく見ている購入レポート</div>
+    <div class="panel-body">
 
-	<div class="panel-heading text-center">みんながよく見ている購入レポート</div>
+        <!-- 「いいね」の数をもとにカウントした購入レポートを上から3番目まで表示 -->
 
-	<div class="panel-body">
+        <% ranks.each.with_index(1) do |rank,i| %>
 
-		<!-- 「いいね」の数をもとにカウントした購入レポートを上から3番目まで表示 -->
+            <div class="col-xs-4">
+                <div class="article panel panel-default">
+                    <div class="panel-heading text-center">第 <%= i %> 位</div>
+                    <div class="panel-body text-center">
+                        <div>
+                            <%= attachment_image_tag rank, :article_image, :fill, 300, 200, format: 'jpeg', class: "img-responsive center-block" %>
+                        </div>
+                        <div class="action">
+                            <%= link_to "詳しくはこちら", article_path(rank), class: "btn btn-default col-xs-12" %>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-		<% ranks.each.with_index(1) do |rank,i| %>
+        <% end %>
 
-			<div class="col-xs-4">
-				<div class="article panel panel-default">
-					<div class="panel-heading text-center">第 <%= i %> 位</div>
-
-					<div class="panel-body text-center">
-
-						<div>
-							<%= attachment_image_tag rank, :article_image, :fill, 300, 200, format: 'jpeg', class: "img-responsive center-block" %>
-						</div>
-
-						<div class="action">
-							<%= link_to "詳しくはこちら", article_path(rank), class: "btn btn-default col-xs-12" %>
-						</div>
-
-					</div>
-
-				</div>
-			</div>
-
-		<% end %>
-
-		<!-- ここまで -->
-
-	</div>
-
+    </div>
 </div>
