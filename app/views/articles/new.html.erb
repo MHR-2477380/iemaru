@@ -1,84 +1,83 @@
 <body id="back">
 
-	<p class="notice text-center"><%= notice %></p>
+    <p class="notice text-center"><%= notice %></p>
 
-	<div class="panel panel-default">
-		<div class="panel-heading text-center">購入レポートを投稿する</div>
-		<div class="panel-body">
+    <div class="panel panel-default">
+        <div class="panel-heading text-center">購入レポートを投稿する</div>
+        <div class="panel-body">
 
-			<!-- 購入レポート新規投稿フォーム -->
+            <!-- 購入レポート新規投稿フォーム -->
 
-			<%= form_with(model: @article, url: articles_path, local: true) do |f| %>
+            <%= form_with(model: @article, url: articles_path, local: true) do |f| %>
 
-
-				<div class="article_field">
-					<div>お住まい</div>
-					<div><%= f.text_field(:town, placeholder:"都道府県  または  エリア")%></div>
-				</div>
-
-
-				<div class="article_field">
-					<div>家族構成</div>
-					<div><%= f.text_field(:family_makeup, placeholder:"父  母  子供２人") %></div>
-				</div>
+                <div class="article_field">
+                    <div>お住まい</div>
+                    <div><%= f.text_field(:town, placeholder:"都道府県  または  エリア")%></div>
+                </div>
 
 
-				<div class="article_field">
-					<div>契約したハウスメーカー・工務店</div>
-					<div><%= f.text_field(:maker, placeholder:"〇〇ハウス・〇〇工務店") %></div>
-				</div>
+                <div class="article_field">
+                    <div>家族構成</div>
+                    <div><%= f.text_field(:family_makeup, placeholder:"父  母  子供２人") %></div>
+                </div>
 
 
-				<div class="article_field">
-					<div>販売形態</div>
-					<div><%= f.text_field(:sales_form, placeholder:"建売・注文住宅") %></div>
-				</div>
+                <div class="article_field">
+                    <div>契約したハウスメーカー・工務店</div>
+                    <div><%= f.text_field(:maker, placeholder:"〇〇ハウス・〇〇工務店") %></div>
+                </div>
 
 
-				<div class="article_field">
-					<div>種類</div>
-					<div><%= f.text_field(:modality, placeholder:"木造・鉄骨") %></div>
-				</div>
+                <div class="article_field">
+                    <div>販売形態</div>
+                    <div><%= f.text_field(:sales_form, placeholder:"建売・注文住宅") %></div>
+                </div>
 
 
-				<div class="article_field">
-					<div>スタイル</div>
-					<div><%= f.text_field(:style, placeholder:"平家・２階建て・３階建て・４階建て") %></div>
-				</div>
+                <div class="article_field">
+                    <div>種類</div>
+                    <div><%= f.text_field(:modality, placeholder:"木造・鉄骨") %></div>
+                </div>
 
 
-				<div class="article_field">
-					<div>費用</div>
-					<div><%= f.text_field(:purchase_price, placeholder:"約〇〇万円") %></div>
-				</div>
+                <div class="article_field">
+                    <div>スタイル</div>
+                    <div><%= f.text_field(:style, placeholder:"平家・２階建て・３階建て・４階建て") %></div>
+                </div>
 
 
-				<div class="article_field">
-					<div>打ち合わせや購入時のエピソード</div>
-					<div><%= f.text_area(:content) %></div>
-				</div>
+                <div class="article_field">
+                    <div>費用</div>
+                    <div><%= f.text_field(:purchase_price, placeholder:"約〇〇万円") %></div>
+                </div>
 
 
-				<div class="article_image_field">
-					<div class="text-left">外観や内観の画像</div>
-					<div class="image_field col-xs-5"><%= f.attachment_field :article_image %></div>
-				</div>
+                <div class="article_field">
+                    <div>打ち合わせや購入時のエピソード</div>
+                    <div><%= f.text_area(:content) %></div>
+                </div>
 
 
-				<div class="article_submit_field">
-					<%= f.submit("購入レポートを投稿する", class: "btn btn-default") %>
-				</div>
+                <div class="article_image_field">
+                    <div class="text-left">外観や内観の画像</div>
+                    <div class="image_field col-xs-5"><%= f.attachment_field :article_image %></div>
+                </div>
+
+
+                <div class="article_submit_field">
+                    <%= f.submit("購入レポートを投稿する", class: "btn btn-default") %>
+                </div>
 
 			<% end %>
 
 			<!-- ここまで -->
 
 		</div>
-	</div>
+    </div>
 
-	<!-- リンク -->
-	<div class="article_show_link">
-		<%= link_to "一覧画面へ戻る", articles_path, class: 'col-xs-12 btn btn-default' %>
-	</div>
+    <!-- リンク -->
+    <div class="article_show_link">
+        <%= link_to "一覧画面へ戻る", articles_path, class: 'col-xs-12 btn btn-default' %>
+    </div>
 
 </body>
