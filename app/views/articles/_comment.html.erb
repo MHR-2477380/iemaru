@@ -1,23 +1,23 @@
 <div class="panel panel-default">
 
-	<div class="panel-heading text-center">
-		<div class="panel-title">コメント</div>
-	</div>
+    <div class="panel-heading text-center">
+        <div class="panel-title">コメント</div>
+    </div>
 
-	<div class="panel-body">
+    <div class="panel-body">
 
-		<% if article.post_comments.blank? %>
-			<div class="blank text-center">まだコメントがありません。</div>
-		<% end %>
+        <% if article.post_comments.blank? %>
+            <div class="blank text-center">まだコメントがありません。</div>
+        <% end %>
 
-		<!-- コメント一覧 -->
+        <!-- コメント一覧 -->
 
-		<% article.post_comments.each do |post_comment| %>
+        <% article.post_comments.each do |post_comment| %>
 
-			<div class="panel">
-				<div class="panel-body">
-					<div class="row">
-						<div class="col-xs-3">
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-3">
 
 							<!-- コメントしたユーザーの画像と名前 -->
 							<%= link_to user_path(post_comment.user) do %>
