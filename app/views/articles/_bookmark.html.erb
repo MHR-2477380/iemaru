@@ -2,14 +2,16 @@
 
     <%= link_to article_bookmarks_path(article.id), method: :delete, remote: true do %>
         <span class="reactionall">
-        &nbsp;<i class= "glyphicon glyphicon-bookmark" aria-hidden="true" ></i>&nbsp;ブックマークを解除&nbsp;
+            &nbsp;<i class= "glyphicon glyphicon-bookmark" aria-hidden="true" ></i>&nbsp;ブックマークを解除&nbsp;
+        </span>
     <% end %>
 
 <% else %>
 
     <%= link_to article_bookmarks_path(article.id), method: :post, remote: true do %>
         <span class="reactionall">
-        &nbsp;<i class= "glyphicon glyphicon-bookmark" aria-hidden="true" ></i>&nbsp;ブックマーク&nbsp;
+            &nbsp;<i class= "glyphicon glyphicon-bookmark" aria-hidden="true" ></i>&nbsp;ブックマーク&nbsp;
+        </span>
     <% end %>
 
 <% end %>
