@@ -79,12 +79,10 @@
                         <% end %>
 
                         <% if answer.user == current_user %>
-
                             <!-- ベストアンサーに選ばれた回答は削除ボタンを表示させない -->
                             <% if @question.best_answer_id != answer.id %>
                                 <%= link_to "削除", question_answer_path(question,answer), method: :delete , local: true, "data-confirm" => "Are you sure?" %>
                             <% end %>
-
                         <% end %>
 
                         <!-- 日付 -->
