@@ -13,20 +13,20 @@
         <div class="panel">
             <div class="panel-body">
                 <div class="row">
-
                     <div class="col-xs-3">
                         <%= link_to user_path(answer.user) do %>
                             <%= attachment_image_tag answer.user, :profile_image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg", size: '50x50', class: "img-responsive center-block" %><br>
                             <p class= "text-center"><%=  answer.user.name %></p>
                         <% end %>
                     </div>
-
-                    <div class="col-xs-9"><%= simple_format(answer.content, size: "400x100") %></div>
-
+                    <div class="col-xs-9">
+                        <%= simple_format(answer.content, size: "400x100") %>
+                    </div>
                 </div>
+
                 <div class="answer_action text-right">
 
-						<!-- ベストアンサーボタン -->
+                        <!-- ベストアンサーボタン -->
 
                         <% if @question.user == current_user %>
                             <!-- 投稿されている全ての回答に対して「この回答をベストアンサーにする！」を表示させる -->
@@ -45,9 +45,9 @@
                                     class: "bestanswer"} %>
 
                             <% end %>
-						<% end %>
+                        <% end %>
 
-						<!-- ベストアンサーの解除ボタン（質問投稿者に対してのみ表示） -->
+                        <!-- ベストアンサーの解除ボタン（質問投稿者に対してのみ表示） -->
                         <% if @question.best_answer_id == answer.id %>
                             <% if @question.user == current_user %>
 
@@ -85,7 +85,7 @@
                                 <%= link_to "削除", question_answer_path(question,answer), method: :delete , local: true, "data-confirm" => "Are you sure?" %>
                             <% end %>
 
-						<% end %>
+                        <% end %>
 
                         <!-- 日付 -->
                         <%= answer.created_at.strftime('%Y/%m/%d') %>
@@ -95,7 +95,7 @@
             </div>
         <% end %>
 
-		<!-- アンサー一覧表示ここまで -->
+        <!-- アンサー一覧表示ここまで -->
 
     </div>
 </div>
