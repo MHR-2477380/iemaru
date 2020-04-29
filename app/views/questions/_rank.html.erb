@@ -1,37 +1,24 @@
 <div class="panel panel-default">
+    <div class="panel-heading text-center">みんながよく見ている質問</div>
+    <div class="panel-body">
 
-	<div class="panel-heading text-center">みんながよく見ている質問</div>
+        <% if ranks.present? %>
+            <% ranks.each.with_index(1) do |rank,i| %>
+                <span class="row">
+                    <span class="col-xs-2 text-center">第 <%= i %> 位</span>
+                    <span class="col-xs-7">
+                        <%= link_to rank.title, question_path(rank) %>
+                    </span>
+                    <span class="col-xs-3 text-center">
+                        <% if rank.status == true %>
+                            <div class="statusbutton"> 回答受付中 </div>
+                        <% else %>
+                            <div class="statusbutton"> &nbsp;&nbsp;回答済み&nbsp;&nbsp;</div>
+                        <% end %>
+                    </span>
+                </span>
+            <% end %>
+        <% end %>
 
-	<div class="panel-body">
-
-		<% if ranks.present? %>
-
-			<% ranks.each.with_index(1) do |rank,i| %>
-
-				<span class="row">
-
-					<span class="col-xs-2 text-center">第 <%= i %> 位</span>
-
-					<span class="col-xs-7">
-						<%= link_to rank.title, question_path(rank) %>
-					</span>
-
-					<span class="col-xs-3 text-center">
-
-						<% if rank.status == true %>
-							<div class="statusbutton"> 回答受付中 </div>
-						<% else %>
-							<div class="statusbutton"> &nbsp;&nbsp;回答済み&nbsp;&nbsp; </div>
-						<% end %>
-
-					</span>
-
-				</span>
-
-			<% end %>
-
-		<% end %>
-
-	</div>
-
+    </div>
 </div>
