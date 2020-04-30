@@ -1,55 +1,42 @@
 <body id="back">
+    <p class="notice text-center"><%= notice %></p>
+    <div class="panel panel-default  text-center">
+        <div class="panel-heading">ユーザー情報を編集する</div>
+        <div class="panel-body">
 
-	<p class="notice text-center"><%= notice %></p>
+            <!-- ユーザー情報編集フォーム -->
+            <%= form_with(model: @user, url: user_path(@user), local: true) do |f| %>
 
-	<div class="panel panel-default  text-center">
-		<div class="panel-heading">ユーザー情報を編集する</div>
+                <div class="article_field">
+                    <div>ニックネーム</div>
+                    <div><%= f.text_field(:name) %></div>
+                </div>
 
-		<div class="panel-body">
+                <div class="article_field">
+                    <div>紹介文</div>
+                    <div><%= f.text_area(:content) %></div>
+                </div>
 
-			<!-- ユーザー情報編集フォーム -->
+                <div class="article_field">
+                    <div class="text-left">プロフィール画像</div>
+                    <div class="image_field col-xs-5"><%= f.attachment_field :profile_image %></div>
+                </div>
 
-			<%= form_with(model: @user, url: user_path(@user), local: true) do |f| %>
+                <div class="article_submit_field">
+                    <%= f.submit("設定を更新する", class: "btn btn-default") %>
+                </div>
 
-			<div class="article_field">
-				<div>ニックネーム</div>
-				<div><%= f.text_field(:name) %></div>
-			</div>
+            <% end %>
+        </div>
+    </div>
 
-			<div class="article_field">
-				<div>紹介文</div>
-				<div><%= f.text_area(:content) %></div>
-			</div>
-
-			<div class="article_field">
-				<div class="text-left">プロフィール画像</div>
-				<div class="image_field col-xs-5"><%= f.attachment_field :profile_image %></div>
-			</div>
-
-			<div class="article_submit_field">
-				<%= f.submit("設定を更新する", class: "btn btn-default") %>
-			</div>
-
-			<% end %>
-
-			<!-- ここまで -->
-
-		</div>
-
-	</div>
-
-	<!-- 退会ボタン -->
-
-	<div class="panel panel-default text-center">
-		<div class="panel-heading">ユーザー情報を削除する</div>
-
-		<div class="panel-body">
-			<div class="article_field">
-				<%=link_to "退会する", user_path(@user.id), method: :DELETE, class:"btn btn-danger col-xs-12", "data-confirm" => "Are you sure?" %>
-			</div>
-		</div>
-	</div>
-
-	<!-- ここまで -->
-
+    <!-- 退会ボタン -->
+    <div class="panel panel-default text-center">
+        <div class="panel-heading">ユーザー情報を削除する</div>
+        <div class="panel-body">
+            <div class="article_field">
+                <%=link_to "退会する", user_path(@user.id), method: :DELETE, class:"btn btn-danger col-xs-12", "data-confirm" => "Are you sure?" %>
+            </div>
+        </div>
+    </div>
 </body>

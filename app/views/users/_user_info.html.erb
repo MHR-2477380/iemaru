@@ -1,35 +1,28 @@
 <div class="row">
 
-	<div class="col-xs-1"></div>
+    <div class="col-xs-1"></div>
 
-	<!-- プロフィールイメージ画像 -->
-	<div class="col-xs-3">
-		<%= attachment_image_tag user, :profile_image, :fill, 150, 150, format: 'jpeg', fallback: "no_image.jpg", size: '150x150',  class: "img-responsive center-block" %>
-	</div>
+    <!-- プロフィールイメージ画像 -->
+    <div class="col-xs-3">
+        <%= attachment_image_tag user, :profile_image, :fill, 150, 150, format: 'jpeg', fallback: "no_image.jpg", size: '150x150',  class: "img-responsive center-block" %>
+    </div>
+    <!-- 自己紹介文 -->
+    <div class="col-xs-7">
+        <div class="user_content">
+            <% if user.content.blank? %>
+                <div class="blank text-center">紹介文を書きましょう！</div>
+            <% end %>
+            <div class="text-left">
+                <%= simple_format(user.content, size: "328x150") %>
+            </div>
+        </div>
+        <div class="user_edit_link text-right">
+            <% if @user == current_user %>
+                <%= link_to "ユーザー情報を設定する", edit_user_path(user.id), class: "btn btn-default" %>
+            <% end %>
+        </div>
+    </div>
 
-	<!-- 自己紹介文 -->
-
-	<div class="col-xs-7">
-
-		<div class="user_content">
-			<% if user.content.blank? %>
-      			<div class="blank text-center">紹介文を書きましょう！</div>
-      		<% end %>
-      		<div class="text-left">
-				<%= simple_format(user.content, size: "328x150") %>
-			</div>
-		</div>
-
-		<div class="user_edit_link text-right">
-			<% if @user == current_user %>
-				<%= link_to "ユーザー情報を設定する", edit_user_path(user.id), class: "btn btn-default" %>
-			<% end %>
-		</div>
-
-	</div>
-
-	<!-- 自己紹介文ここまで -->
-
-	<div class="col-xs-1"></div>
+    <div class="col-xs-1"></div>
 
 </div>
