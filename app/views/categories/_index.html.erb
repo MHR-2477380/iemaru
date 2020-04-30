@@ -1,61 +1,43 @@
 <!-- カテゴリー検索結果表示欄（デフォルトは一覧表示） -->
 
 <div class="panel panel-default">
-
   <div class="panel-heading text-center">
-
     <% if category.blank? %>
         <div class="panel-title">質問一覧</div>
     <% else %>
         <div class="panel-title"><%= category.name %>投稿されている質問</div>
     <% end %>
-
   </div>
 
   <div class="panel-body">
-
     <% if questions.blank? %>
-
         <div class="text-center">
             <span style="color: red;">投稿がありません</span>
         </div>
-
     <% end %>
 
     <% if questions.present? %>
-
         <% questions.each do |question| %>
 
             <span class="row">
-
                 <span class="col-xs-1"></span>
-
                 <span class="col-xs-7">
                     <%= link_to question.title, question_path(question) %>
                 </span>
-
                 <span class="col-xs-3 text-right">
-
                     <% if question.status == true %>
                         <span class="statusbutton"> 回答受付中</span>
                     <% else %>
                         <span class="statusbutton">&nbsp;&nbsp;回答済み&nbsp;&nbsp;</span>
                     <% end %>
-
                 </span>
-
                 <span class="col-xs-1"></span>
-
             </span>
 
         <% end %>
-
     <% end %>
 
-  </div>
-
+    </div>
 </div>
-
-<!-- ここまで -->
 
 
