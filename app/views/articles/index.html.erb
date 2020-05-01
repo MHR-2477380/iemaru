@@ -5,19 +5,19 @@
             <!-- ランキング -->
             <%= render 'articles/rank', ranks: @ranks %>
 
-            <!-- 各リンク -->
+            <!-- 新規投稿画面へのリンク -->
             <div class="row article_index_link">
-                <span class="col-xs-6">
-                    <%= link_to "購入レポートを投稿する", new_article_path, class: 'col-xs-12 btn btn-default' %>
-                </span>
-                <span class="col-xs-6">
-                    <%= link_to "キーワードから購入レポートを検索する", search_path, class: 'col-xs-12 btn btn-default' %>
-                </span>
+                <div class="col-xs-12">
+                    <%= link_to "購入レポートを投稿する！", new_article_path, class: 'col-xs-12 btn btn-default' %>
+                </div>
             </div>
+
+            <!-- キーワード検索画面 -->
+            <%= render 'searches/search', records: @records %>
 
             <!-- レポート一覧 -->
             <div class="panel panel-default">
-                <div class="panel-heading text-center">投稿された購入レポート</div>
+                <div class="panel-heading text-center">投稿された購入レポート一覧</div>
                 <div class="panel-body">
 
                     <% @articles.each do |article| %>
@@ -53,7 +53,6 @@
 
                 </div>
             </div>
-            <!-- レポート一覧ここまで -->
         </div>
     </div>
 </body>
