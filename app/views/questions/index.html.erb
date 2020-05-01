@@ -5,20 +5,20 @@
             <!-- ランキング -->
             <%= render 'questions/rank', ranks: @ranks %>
 
-            <!-- 各リンク -->
+            <!-- 新規投稿画面へのリンク -->
             <div class="question_index_link">
                 <span class="col-xs-12">
                     <%= link_to "新しい質問を投稿する！", new_question_path, class: 'col-xs-12 btn btn-default' %>
                 </span>
             </div>
 
-            <!-- 一覧表示 -->
-            <%= render 'questions/index', active_questions: @active_questions, passive_questions: @passive_questions, questions: @questions  %>
-
             <!-- カテゴリー検索  -->
             <div id="category">
                 <%= render 'categories/category', categories: @categories, category: @category, questions: @questions %>
             </div>
+
+            <!-- 一覧表示 -->
+            <%= render 'questions/index', active_questions: @active_questions, passive_questions: @passive_questions, questions: @questions  %>
 
         </div>
     </div>
