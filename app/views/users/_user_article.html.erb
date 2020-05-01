@@ -1,27 +1,21 @@
 <div class="panel panel-default">
+    <div class="panel-heading text-center">投稿したレポート</div>
+    <div class="panel-body text-center">
+        <% if articles.blank? %>
+            <div class="blank text-center">まだレポートが投稿されていません。</div>
+        <% end %>
 
-	<div class="panel-heading text-center">投稿したレポート</div>
+        <!-- レポート一覧表示 -->
+        <% articles.each do |article| %>
 
-	<div class="panel-body text-center">
-		<% if articles.blank? %>
-			<div class="blank text-center">まだレポートが投稿されていません。</div>
-		<% end %>
+            <div class="user_article_image">
+                <%= attachment_image_tag article, :article_image, :fill, 450, 300, format: 'jpeg', class: "img-responsive center-block" %>
+            </div>
+            <div class="center-block">
+                <%= link_to "詳細ページへ", article_path(article), class: "article_link btn btn-default" %>
+            </div>
 
-		<!-- レポート一覧表示 -->
+        <% end %>
 
-		<% articles.each do |article| %>
-
-			<div class="user_article_image">
-				<%= attachment_image_tag article, :article_image, :fill, 450, 300, format: 'jpeg', class: "img-responsive center-block" %>
-			</div>
-
-			<div class="center-block"><%= link_to "詳細ページへ", article_path(article), class: "article_link btn btn-default" %>
-			</div>
-
-		<% end %>
-
-		<!-- ここまで -->
-
-	</div>
-
+    </div>
 </div>

@@ -1,66 +1,46 @@
 <body id="back">
+    <p class="notice text-center"><%= notice %></p>
 
-	<p class="notice text-center"><%= notice %></p>
+    <!-- 親パネル -->
+    <div class="panel panel-default">
+        <div class="panel-heading text-center">
+            <%= @user.name %>さんのマイページ
+        </div>
+        <div class="panel-body">
+            <!-- ユーザー情報 -->
+            <%= render 'users/user_info', user: @user %>
 
-	<!-- 親パネル -->
-	<div class="panel panel-default">
+            <!-- 各リンク -->
+            <% if @user == current_user %>
+                <div class="row user_show_link">
+                    <div class="col-xs-1"></div>
+                    <div class="user_link col-xs-5">
+                        <%= link_to "みんなの質問を見にいく", questions_path, class: 'col-xs-12 btn btn-default' %>
+                    </div>
+                    <div class="user_link col-xs-5">
+                        <%= link_to "みんなの購入レポートを見にいく", articles_path, class: 'col-xs-12 btn btn-default' %>
+                    </div>
+                    <div class="col-xs-1"></div>
+                </div>
+            <% end %>
 
-		<div class="panel-heading text-center">
-			<%= @user.name %>さんのマイページ
-		</div>
+            <!-- 各一覧 -->
+            <div class="row">
+                <div class="col-xs-1"></div>
+                <div class="col-xs-10">
+                    <!-- ブックマークをした投稿一覧（ブックマーク一覧は @user == current_user の場合のみ表示） -->
+                    <% if @user == current_user %>
+                        <%= render 'users/user_bookmark', bookmarks: @bookmarks %>
+                    <% end %>
 
-		<div class="panel-body">
+                    <!-- ユーザーが投稿したレポート -->
+                    <%= render 'users/user_article', articles: @articles %>
 
-			<!-- ユーザー情報 -->
-			<%= render 'users/user_info', user: @user %>
-
-
-			<!-- 各リンク -->
-			<% if @user == current_user %>
-
-				<div class="row user_show_link">
-
-					<div class="col-xs-1"></div>
-
-					<div class="user_link col-xs-5">
-						<%= link_to "みんなの質問を見にいく", questions_path, class: 'col-xs-12 btn btn-default' %>
-					</div>
-
-					<div class="user_link col-xs-5">
-						<%= link_to "みんなの購入レポートを見にいく", articles_path, class: 'col-xs-12 btn btn-default' %>
-					</div>
-
-					<div class="col-xs-1"></div>
-
-				</div>
-
-			<% end %>
-
-			<div class="row">
-
-				<div class="col-xs-1"></div>
-
-				<div class="col-xs-10">
-
-					<!-- ブックマークをした投稿一覧（ブックマーク一覧は @user == current_user の場合のみ表示） -->
-					<% if @user == current_user %>
-						<%= render 'users/user_bookmark', bookmarks: @bookmarks %>
-					<% end %>
-
-					<!-- ユーザーが投稿したレポート -->
-					<%= render 'users/user_article', articles: @articles %>
-
-					<!-- ユーザーが投稿した質問 -->
-					<%= render 'users/user_question', questions: @questions %>
-
-				</div>
-
-				<div class="col-xs-1"></div>
-
-			</div>
-
-		</div>
-	</div>
-	<!-- 親パネルここまで -->
-
+                    <!-- ユーザーが投稿した質問 -->
+                    <%= render 'users/user_question', questions: @questions %>
+                </div>
+                <div class="col-xs-1"></div>
+            </div>
+        </div>
+    </div>
 </body>
