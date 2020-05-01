@@ -16,7 +16,7 @@
                     <div class="col-xs-3">
                         <%= link_to user_path(answer.user) do %>
                             <%= attachment_image_tag answer.user, :profile_image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg", size: '50x50', class: "img-responsive center-block" %><br>
-                            <p class= "text-center"><%=  answer.user.name %></p>
+                            <div class="text-center"><%= answer.user.name %></div>
                         <% end %>
                     </div>
                     <div class="col-xs-9">

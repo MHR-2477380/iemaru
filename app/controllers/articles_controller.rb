@@ -5,8 +5,33 @@ class ArticlesController < ApplicationController
 
 
     def index
+        # ランキング
         @ranks = Article.find(Favorite.group(:article_id).order('count(article_id) desc').limit(3).pluck(:article_id))
+        # 一覧表示
         @articles = Article.page(params[:page]).reverse_order.per(8)
+
+        # キーワード検索
+        word = params[:search_word]
+
+        @records = Article.where(
+
+            "town LIKE? or
+            family_makeup LIKE? or
+            maker LIKE? or
+            sales_form LIKE? or
+            modality LIKE? or
+            style LIKE? or
+            purchase_price LIKE? or
+            content LIKE?",
+            "%#{word}%",
+            "%#{word}%",
+            "%#{word}%",
+            "%#{word}%",
+            "%#{word}%",
+            "%#{word}%",
+            "%#{word}%",
+            "%#{word}%").page(params[:page]).reverse_order.per(4)
+
     end
 
 
