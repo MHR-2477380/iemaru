@@ -4,15 +4,19 @@
         <div class="panel-title">カテゴリー検索</div>
     </div>
     <div class="panel-body">
-        <ul type="square">
+        <div class="row">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-10">
 
-            <% @categories.each do |category| %>
-                <li>
-                    <%= link_to("#{category.name}", questions_path(category_id: category.id), remote: true) %>
-                </li>
-            <% end %>
+                <% @categories.each do |category| %>
+                    <li class="category">
+                        <%= link_to("#{category.name}", questions_path(category_id: category.id), remote: true) %>
+                    </li>
+                <% end %>
 
-        </ul>
+            </div>
+            <div class="col-xs-1"></div>
+        </div>
     </div>
 </div>
 
