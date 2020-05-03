@@ -77,6 +77,7 @@ class QuestionsController < ApplicationController
 end
 
 private
+
     def question_params
         params.require(:question).permit(:category_id, :status, :title, :content, :best_answer_id)
     end
