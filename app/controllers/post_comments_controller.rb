@@ -1,8 +1,6 @@
 class PostCommentsController < ApplicationController
 
-
     before_action :authenticate_user!
-
 
     def create
         @article = Article.find(params[:article_id])
@@ -18,7 +16,6 @@ class PostCommentsController < ApplicationController
         end
     end
 
-
     def edit
         @article = Article.find(params[:article_id])
         @post_comment = PostComment.find(params[:id])
@@ -28,7 +25,6 @@ class PostCommentsController < ApplicationController
             redirect_to article_path(@article)
         end
     end
-
 
     def update
         @post_comment = PostComment.find(params[:id])
@@ -42,14 +38,12 @@ class PostCommentsController < ApplicationController
         end
     end
 
-
     def destroy
         @post_comment = PostComment.find(params[:id])
         @post_comment.destroy
         # articleの詳細ページにレンダーするために必要なインスタンス
         @article = Article.find(params[:article_id])
     end
-
 
 end
 

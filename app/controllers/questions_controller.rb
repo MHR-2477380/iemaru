@@ -1,8 +1,6 @@
 class QuestionsController < ApplicationController
 
-
     before_action :authenticate_user!
-
 
     def index
         # ランキング機能
@@ -21,9 +19,7 @@ class QuestionsController < ApplicationController
         # params[:category_id]が存在しない場合、質問を全て取得する
         @questions = Question.all
         end
-
     end
-
 
     def show
         @question = Question.find(params[:id])
@@ -31,12 +27,10 @@ class QuestionsController < ApplicationController
         @answer = Answer.new
     end
 
-
     def new
         @question = Question.new
         @user = current_user
     end
-
 
     def create
         @question = Question.new(question_params)
@@ -53,7 +47,6 @@ class QuestionsController < ApplicationController
         end
     end
 
-
     def edit
         @question = Question.find(params[:id])
 
@@ -62,7 +55,6 @@ class QuestionsController < ApplicationController
             redirect_to question_path(@question)
         end
     end
-
 
     def update
         @question = Question.find(params[:id])
@@ -76,13 +68,11 @@ class QuestionsController < ApplicationController
         end
     end
 
-
     def destroy
         @question = Question.find(params[:id])
         @question.destroy
         redirect_to questions_path
     end
-
 
 end
 
