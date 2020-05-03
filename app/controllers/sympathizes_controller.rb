@@ -10,7 +10,7 @@ class SympathizesController < ApplicationController
             @question = Question.find(params[:question_id])
             @sympathize = current_user.sympathizes.find_by(question_id: @question.id)
             @sympathize.destroy
-        end
 
+    end
 
 end

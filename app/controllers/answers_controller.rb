@@ -1,8 +1,6 @@
 class AnswersController < ApplicationController
 
-
     before_action :authenticate_user!
-
 
     def create
         @question = Question.find(params[:question_id])
@@ -17,7 +15,6 @@ class AnswersController < ApplicationController
         end
     end
 
-
     def edit
         @question = Question.find(params[:question_id])
         @answer = Answer.find(params[:id])
@@ -27,7 +24,6 @@ class AnswersController < ApplicationController
             redirect_to question_path(@question)
         end
     end
-
 
     def update
         @answer = Answer.find(params[:id])
@@ -41,13 +37,11 @@ class AnswersController < ApplicationController
         end
     end
 
-
     def destroy
         @answer = Answer.find(params[:id])
         @answer.destroy
         redirect_back(fallback_location: root_path)
     end
-
 
 end
 

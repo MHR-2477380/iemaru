@@ -1,13 +1,10 @@
 class UsersController < ApplicationController
 
-
 	before_action :authenticate_user!
-
 
 	def index
 		@users = User.all.page(params[:page]).reverse_order.per(10)
 	end
-
 
 	def show
 		@user = User.find(params[:id])
@@ -15,7 +12,6 @@ class UsersController < ApplicationController
 		@questions = Question.where(user_id:params[:id]).page(params[:page]).reverse_order.per(5)
 		@bookmarks = current_user.bookmark_articles.page(params[:page]).reverse_order.per(4)
 	end
-
 
 	def edit
 		@user = User.find(params[:id])
@@ -25,7 +21,6 @@ class UsersController < ApplicationController
 			redirect_to user_path(@user)
 		end
 	end
-
 
 	def update
 		@user = User.find(params[:id])
@@ -39,13 +34,11 @@ class UsersController < ApplicationController
     	end
 	end
 
-
 	def destroy
 		@user = User.find(params[:id])
 		@user.destroy
 		redirect_to root_path
 	end
-
 
 end
 

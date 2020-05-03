@@ -1,8 +1,6 @@
 class QuestionsController < ApplicationController
 
-
     before_action :authenticate_user!
-
 
     def index
         # ランキング機能
@@ -24,19 +22,16 @@ class QuestionsController < ApplicationController
 
     end
 
-
     def show
         @question = Question.find(params[:id])
         # 回答を投稿するためのインスタンス変数
         @answer = Answer.new
     end
 
-
     def new
         @question = Question.new
         @user = current_user
     end
-
 
     def create
         @question = Question.new(question_params)
@@ -53,7 +48,6 @@ class QuestionsController < ApplicationController
         end
     end
 
-
     def edit
         @question = Question.find(params[:id])
 
@@ -62,7 +56,6 @@ class QuestionsController < ApplicationController
             redirect_to question_path(@question)
         end
     end
-
 
     def update
         @question = Question.find(params[:id])
@@ -76,18 +69,15 @@ class QuestionsController < ApplicationController
         end
     end
 
-
     def destroy
         @question = Question.find(params[:id])
         @question.destroy
         redirect_to questions_path
     end
 
-
 end
 
 private
-
     def question_params
         params.require(:question).permit(:category_id, :status, :title, :content, :best_answer_id)
     end
