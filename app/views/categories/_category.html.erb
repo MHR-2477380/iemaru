@@ -1,23 +1,60 @@
 <!-- カテゴリー検索欄 -->
-
 <div class="panel panel-default">
-
     <div class="panel-heading text-center">
-        <div class="panel-title">
-            カテゴリー検索
+        <div class="panel-title">カテゴリー検索</div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-10">
+
+                <% @categories.each do |category| %>
+                    <li class="category">
+                        <%= link_to("#{category.name}", questions_path(category_id: category.id), remote: true) %>
+                    </li>
+                <% end %>
+
+            </div>
+            <div class="col-xs-1"></div>
         </div>
     </div>
+</div>
 
+<!-- カテゴリー検索結果表示欄（デフォルトは一覧表示） -->
+<div class="panel panel-default">
+    <div class="panel-heading text-center">
+        <% if category.blank? %>
+            <div class="panel-title">検索結果</div>
+        <% else %>
+            <div class="panel-title"><%= category.name %>投稿されている質問</div>
+        <% end %>
+    </div>
     <div class="panel-body">
-        <ul type="square">
+        <% if questions.blank? %>
+            <div class="text-center">
+                <span class="blank">検索結果がありません</span>
+            </div>
+        <% end %>
 
-            <% @categories.each do |category| %>
-                <li>
-                    <%= link_to("#{category.name}", categories_path(category_id: category.id), remote: true) %>
-                </li>
+        <% if questions.present? %>
+            <% questions.each do |question| %>
+
+                <span class="row">
+                    <span class="col-xs-1"></span>
+                    <span class="col-xs-7">
+                        <%= link_to question.title, question_path(question) %>
+                    </span>
+                    <span class="col-xs-3 text-right">
+                        <% if question.status == true %>
+                        <span class="statusbutton"> 回答受付中</span>
+                        <% else %>
+                        <span class="statusbutton">&nbsp;&nbsp;回答済み&nbsp;&nbsp;</span>
+                        <% end %>
+                    </span>
+                    <span class="col-xs-1"></span>
+                </span>
+
             <% end %>
-
-        </ul>
-   </div>
-
- </div>
+        <% end %>
+    </div>
+</div>

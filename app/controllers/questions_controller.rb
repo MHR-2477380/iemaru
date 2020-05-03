@@ -5,9 +5,23 @@ class QuestionsController < ApplicationController
 
 
     def index
+        # ランキング機能
         @ranks = Question.find(Sympathize.group(:question_id).order('count(question_id) desc').limit(3).pluck(:question_id))
+        # 一覧表示機能
         @active_questions = Question.where(status: true).page(params[:page]).reverse_order.per(5)
         @passive_questions = Question.where(status: false).page(params[:page]).reverse_order.per(5)
+        # カテゴリー検索機能
+        @categories = Category.all
+
+        if params[:category_id].present?
+        # params[:category_id]が存在する場合、カテゴリーに紐づく質問のみを取得する
+        @category = Category.find(params[:category_id].to_i)
+        @questions = Question.where(category_id: @category.id)
+        else
+        # params[:category_id]が存在しない場合、質問を全て取得する
+        @questions = Question.all
+        end
+
     end
 
 

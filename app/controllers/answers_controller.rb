@@ -8,7 +8,8 @@ class AnswersController < ApplicationController
         @question = Question.find(params[:question_id])
         @answer = current_user.answers.new(answer_params)
         @answer.question_id = @question.id
-        if  @answer.saveflash[:notice] = "回答を投稿しました。"
+        if  @answer.save
+            flash[:notice] = "回答を投稿しました。"
             redirect_to question_path(@answer.question.id)
         else
             flash[:notice] = "入力されていない項目があります。"
