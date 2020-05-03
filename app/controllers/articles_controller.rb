@@ -1,15 +1,12 @@
 class ArticlesController < ApplicationController
 
-
     before_action :authenticate_user!
-
 
     def index
         # ランキング
         @ranks = Article.find(Favorite.group(:article_id).order('count(article_id) desc').limit(3).pluck(:article_id))
         # 一覧表示
         @articles = Article.page(params[:page]).reverse_order.per(8)
-
         # キーワード検索
         word = params[:search_word]
 
@@ -31,21 +28,17 @@ class ArticlesController < ApplicationController
             "%#{word}%",
             "%#{word}%",
             "%#{word}%").page(params[:page]).reverse_order.per(4)
-
     end
-
 
     def show
         @article = Article.find(params[:id])
         @post_comment = PostComment.new
     end
 
-
     def new
         @article = Article.new
         @user = current_user
     end
-
 
     def create
          @article = Article.new(article_params)
@@ -60,7 +53,6 @@ class ArticlesController < ApplicationController
         end
     end
 
-
     def edit
         @article = Article.find(params[:id])
 
@@ -69,7 +61,6 @@ class ArticlesController < ApplicationController
             redirect_to article_path(@article)
         end
     end
-
 
     def update
         @article = Article.find(params[:id])
@@ -83,13 +74,11 @@ class ArticlesController < ApplicationController
         end
     end
 
-
     def destroy
         @article = Article.find(params[:id])
         @article.destroy
         redirect_to articles_path
     end
-
 
 end
 
