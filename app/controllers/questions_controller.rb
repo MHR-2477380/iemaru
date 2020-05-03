@@ -19,7 +19,6 @@ class QuestionsController < ApplicationController
         # params[:category_id]が存在しない場合、質問を全て取得する
         @questions = Question.all
         end
-
     end
 
     def show
