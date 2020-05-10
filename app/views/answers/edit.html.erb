@@ -3,11 +3,9 @@
     <p class="notice text-center"><%= notice %></p>
 
     <div class="panel panel-default">
-
         <div class="panel-heading text-center">
             <div class="panel-title">　回答の編集　</div>
         </div>
-
         <div class="panel-body">
 
             <%= form_with(model: [@question, @answer], url: question_answer_path(@question, @answer), local: true, method: :PATCH ) do |f| %>
@@ -26,9 +24,9 @@
         </div>
     </div>
 
-	<!-- リンク -->
-	<div class="question_show_link">
-		<%= link_to "詳細画面へ戻る", question_path(@question), class: 'col-xs-12 btn btn-default' %>
-	</div>
+    <!-- リンク -->
+    <div class="question_show_link">
+        <%= link_to "詳細画面へ戻る", question_path(@question), class: 'col-xs-12 btn btn-default' %>
+    </div>
 
 </body>
